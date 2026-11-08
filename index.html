@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mafia Game</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🕵️ لعبة المافيا</h1>
+
+        <!-- بداية اللعبة -->
+
+        <div id="startScreen">
+
+            <h2>أدخل عدد اللاعبين</h2>
+
+            <input type="number" id="playersCount"
+                min="3" max="20" value="6">
+
+            <button onclick="startGame()">
+                ابدأ اللعبة
+            </button>
+
+        </div>
+
+        <!-- شاشة اللاعبين -->
+
+        <div id="gameScreen" class="hidden">
+
+            <h2>اختر بطاقتك</h2>
+
+            <p>اضغط على بطاقتك لمعرفة دورك</p>
+
+            <div id="playersContainer" class="players">
+
+            </div>
+
+            <button onclick="restartGame()" class="restart">
+                إعادة اللعب 🔄
+            </button>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

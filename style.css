@@ -1,0 +1,124 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #101827;
+    color: white;
+    text-align: center;
+}
+
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: 50px auto;
+}
+
+h1 {
+    color: #f1c40f;
+    font-size: 35px;
+}
+
+h2 {
+    margin-top: 30px;
+}
+
+input {
+    width: 100%;
+    max-width: 200px;
+    padding: 12px;
+    font-size: 18px;
+    text-align: center;
+    border: none;
+    border-radius: 8px;
+    margin: 15px;
+}
+
+button {
+    padding: 12px 25px;
+    background: #f1c40f;
+    color: #101827;
+    border: none;
+    border-radius: 8px;
+    font-size: 17px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #d4ac0d;
+}
+
+.players {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 30px 0;
+}
+
+.card {
+    background: #263449;
+    padding: 30px 10px;
+    border-radius: 12px;
+    cursor: pointer;
+    border: 2px solid #40536b;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: #f1c40f;
+}
+
+.card h3 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.card p {
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+.card.revealed {
+    background: #34495e;
+}
+
+.card.mafia {
+    background: #922b21;
+    border-color: #e74c3c;
+}
+
+.card.salah {
+    background: #196f3d;
+    border-color: #2ecc71;
+}
+
+.restart {
+    background: #3498db;
+    color: white;
+    margin-top: 20px;
+}
+
+.restart:hover {
+    background: #2980b9;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 500px) {
+
+    .players {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .container {
+        margin: 30px auto;
+    }
+
+}
