@@ -8,8 +8,7 @@
 
     <title>Mafia Game</title>
 
-    <link rel="icon" type="image/png" href="favicon.png">
-
+    <link rel="icon" type="image/png" href="./favicon.png">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -19,7 +18,7 @@
 
         <h1>🕵️ لعبة المافيا</h1>
 
-        <!-- بداية اللعبة -->
+        <!-- شاشة البداية -->
 
         <div id="startScreen">
 
@@ -34,13 +33,13 @@
 
         </div>
 
-        <!-- شاشة اللاعبين -->
+        <!-- شاشة اللعبة -->
 
         <div id="gameScreen" class="hidden">
 
-            <h2>اختر بطاقتك</h2>
+            <h2 id="playerTitle">اللاعب الأول</h2>
 
-            <p>اضغط على بطاقتك لمعرفة دورك</p>
+            <p id="message">اضغط على الكارت لمعرفة دورك</p>
 
             <div id="playersContainer" class="players">
 
