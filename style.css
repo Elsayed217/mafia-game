@@ -122,3 +122,22 @@ button:hover {
     }
 
 }
+
+#playersContainer {
+    display: flex;
+    justify-content: center;
+}
+
+#playersContainer .card {
+    width: 250px;
+}
+
+#nextButton {
+    margin: 10px;
+    background: #2ecc71;
+    color: white;
+}
+
+#nextButton:hover {
+    background: #27ae60;
+}
