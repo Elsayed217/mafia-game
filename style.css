@@ -70,7 +70,6 @@ button:hover {
 
 .card:hover {
     transform: translateY(-5px);
-    border-color: #f1c40f;
 }
 
 .card h3 {
