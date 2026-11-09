@@ -3,11 +3,11 @@ let playersCount = 0;
 
 let mafiaIndex = -1;
 
-let previousMafia = -1;
-
-let activeCard = null;
+let currentPlayer = 0;
 
 let timer = null;
+
+let revealed = false;
 
 
 // بدء اللعبة
@@ -23,86 +23,75 @@ function startGame() {
         return;
     }
 
-    previousMafia = -1;
-
     document.getElementById("startScreen").classList.add("hidden");
 
     document.getElementById("gameScreen").classList.remove("hidden");
 
     createGame();
+
 }
 
 
-// إنشاء اللعبة والبطاقات
+// إنشاء لعبة جديدة
 
 function createGame() {
 
     clearTimeout(timer);
 
-    activeCard = null;
+    currentPlayer = 0;
+
+    revealed = false;
+
+    mafiaIndex = Math.floor(Math.random() * playersCount);
+
+    showPlayer();
+
+}
+
+
+// عرض اللاعب الحالي
+
+function showPlayer() {
 
     let players = document.getElementById("playersContainer");
 
     players.innerHTML = "";
 
-    // اختيار المافيا عشوائياً
+    document.getElementById("playerTitle").innerText =
+        "اللاعب رقم " + (currentPlayer + 1);
 
-    let randomIndex;
+    document.getElementById("message").innerText =
+        "اضغط على الكارت لمعرفة دورك";
 
-    do {
-        randomIndex = Math.floor(Math.random() * playersCount);
-    } while (randomIndex === previousMafia);
+    let card = document.createElement("div");
 
-    mafiaIndex = randomIndex;
+    card.className = "card";
 
-    // إنشاء بطاقات اللاعبين
+    card.innerHTML = `
+        <h3>👤 اللاعب ${currentPlayer + 1}</h3>
+        <p>اضغط للكشف</p>
+    `;
 
-    for (let i = 0; i < playersCount; i++) {
+    card.onclick = function() {
+        revealCard(card);
+    };
 
-        let card = document.createElement("div");
-
-        card.className = "card";
-
-        card.innerHTML = `
-            <h3>👤 اللاعب ${i + 1}</h3>
-            <p>اضغط للكشف</p>
-        `;
-
-        card.onclick = function() {
-            revealCard(card, i);
-        };
-
-        players.appendChild(card);
-
-    }
+    players.appendChild(card);
 
 }
 
 
 // إظهار دور اللاعب
 
-function revealCard(card, index) {
+function revealCard(card) {
 
-    // إغلاق البطاقة السابقة
-
-    clearTimeout(timer);
-
-    if (activeCard !== null) {
-
-        activeCard.className = "card";
-
-        activeCard.innerHTML = `
-            <h3>👤 اللاعب السابق</h3>
-            <p>اضغط للكشف</p>
-        `;
-
+    if (revealed) {
+        return;
     }
 
-    activeCard = card;
+    revealed = true;
 
-    // معرفة دور اللاعب
-
-    if (index === mafiaIndex) {
+    if (currentPlayer === mafiaIndex) {
 
         card.className = "card revealed mafia";
 
@@ -122,18 +111,32 @@ function revealCard(card, index) {
 
     }
 
-    // إغلاق البطاقة بعد 5 ثوانٍ
+    document.getElementById("message").innerText =
+        "احفظ دورك جيدًا";
+
+    // الانتقال تلقائيًا بعد 2.5 ثانية
 
     timer = setTimeout(function() {
 
-        card.className = "card";
+        currentPlayer++;
 
-        card.innerHTML = `
-            <h3>👤 اللاعب ${index + 1}</h3>
-            <p>اضغط للكشف</p>
-        `;
+        if (currentPlayer < playersCount) {
 
-        activeCard = null;
+            revealed = false;
+
+            showPlayer();
+
+        } else {
+
+            document.getElementById("playersContainer").innerHTML = "";
+
+            document.getElementById("playerTitle").innerText =
+                "انتهى توزيع الأدوار";
+
+            document.getElementById("message").innerText =
+                "🎉 تم توزيع جميع الأدوار";
+
+        }
 
     }, 1000);
 
@@ -143,8 +146,6 @@ function revealCard(card, index) {
 // إعادة اللعب
 
 function restartGame() {
-
-    previousMafia = -1;
 
     createGame();
 
